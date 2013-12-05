@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036) -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Rails Bootstrap</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+<!--     <link href="/stylesheets/bootstrap.css" rel="stylesheet">
+    <link href="/stylesheets/docs.css" rel="stylesheet"> -->
+    <link href="/stylesheets/search.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/1.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/2.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/3.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/4.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/screen4(joinIn).css">
+
+ <script src="/javascripts/jquery.min.js"></script>
+    <script src="/javascripts/jquery.tablesorter.min.js"></script>
+    <script src="/javascripts/bootstrap-dropdown.js"></script>
+    <script src="/javascripts/jquery.tablesorter.min.js"></script>
+    <script src="/javascripts/application.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/search.js"></script>
+
+
+<%=javascript_include_tag "application"%>
+
+
+    <!-- Le fav and touch icons -->
+    <link rel="apple-touch-icon" href="/images/ico/bootstrap-apple-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/ico/bootstrap-apple-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/ico/bootstrap-apple-114x114.png">
+
+</head>
+    <body id="main_body">
+
+    <!-- Topbar ================================================== -->
+    <div class="make_header_fix">
+    <div id="header_back">
+    <div id="header">
+       <a href="../screen1/screen1.html"><span id="logo"></span></a>
+       <a href="../screen1/screen1.html"><span id="option"></span></a>
+
+            <div   class="search_input"> 
+
+                <div id="floatl">
+<!--                     <form  action="search_results" method="post" name="search_form">
+        
+        
+                        <input class="input_field"   placeholder="Search for people, jobs, companies, and more..." autocomplete="off"  type="text" value="" name="search">
+                        <input  type="submit"  value="" id="btn">
+
+                    </form>         -->
+
+
+
+
+                    <%= form_tag(controller: "search", action: "search_results", method: "post" ) do %>
+
+                        <input class="input_field"   placeholder="Search for people, jobs, companies, and more..." autocomplete="off"  type="text" value="" name="search">
+  
+  <%= submit_tag("",:id=>"btn") %>
+
+
+  <% end %>
+
+
+
+
+
+
+                </div>
+
+
+                 <div id="floatl">
+
+
+
+                    <a href="#"><span id="user"></span></a>
+                
+                   
+                        
+
+
+                    </span></a>
+
+                    <a href="# "><span id="notification" ></span></a>
+
+                    <a href="#" ><span id="message" > </span> </a>
+
+                    <a href="#"  id="advancer" class="advance_link"  value="">Advanced</a>
+
+
+              
+    </div>
+
+    
+
+</div>
+</div>
+</div>
+
+<div style="clear:both">
+
+<div id="black_header">
+
+    <ul id="header_link">
+            
+
+            <li >
+
+         <%= link_to "Home" , search_index_path  %>
+
+            </li>
+
+            
+
+            <li>
+        
+                   <%= link_to "Profile" , search_profile_path  %> 
+
+                    
+
+            </li>
+        
+
+            <li>
+        
+         <a href="#" id="bbb" value=""  >Network</a>
+
+                    <ul class="dropdown-menu 2nd" id="black-background" role="menu" aria-labelledby="dropdownMenu" >
+                    <li><a tabindex="-1" href="showFriends">Contacts</a></li>
+                    <li><a tabindex="-1" href="#">Add connection</a></li>
+                    </ul>
+
+            </li>
+
+
+            <li>
+        
+                    <a href="#"  value="" >Jobs</a>
+
+            </li>
+        
+
+            <li>
+        
+        
+                    <a href="#" value="">Intrests</a>
+
+
+                    
+
+            </li>
+
+
+
+            <li>
+        
+                    <a href="#" value=""  id="ddd" style=" margin-left: 392px; ">Business Services</a>
+
+
+<ul class="dropdown-menu 4th" id="black-background" role="menu" aria-labelledby="dropdownMenu" style=" margin-left: 395px;">
+  <li><a tabindex="-1" href="#">Post a Job</a></li>
+  <li><a tabindex="-1" href="#">Talent Solutions</a></li>
+  <li><a tabindex="-1" href="#">Advertise</a></li>
+  
+</ul>
+
+            </li>
+        
+
+            <li>
+        
+        
+                    <a href="#" value="">Upgrade</a>
+
+            </li>
+
+        </ul>
+
+    </div>
+
+
+</div>
+</div>
+
+<div  id="advance">
+
+
+                <div  id="fields">
+
+
+                <div  id="toptext">
+
+                <strong id="people">People</strong>
+
+                <p id="jobs">Jobs</p>
+
+                </div>
+
+                <div  id="boxes">
+
+                    <%= form_tag(controller: "search", action: "advance", method: "post" ,name:"search_form") do |f| %>
+            <label class="labels">Keywords</label>
+                <input id="fieldlength" type="text" value="" name=""></br>
+
+                <label class="labels">First Name</label>
+                <input id="fieldlength" type="text" value="" name=""></br>
+                
+                <label class="labels">Last Name</label>
+                <input id="fieldlength" type="text" value="" name=""></br>
+                
+                <label class="labels">Title</label>
+                <input id="fieldlength" type="text" value="" name=""></br>
+
+                <label class="labels">Company</label>
+                <input id="fieldlength" type="text" value="" name=""></br>
+
+                <label class="labels">School</label>
+                <input id="fieldlength" type="text" value="" name=""></br>
+
+               <%= select_tag "country", Countries.all.collect {|c| [ c.country_name, c.country_code ] } %>
+
+
+
+
+
+                    <input type="submit" value="Search" name="submit" class="shareButton"  id="floatl">
+
+            <%end%>
+
+                </div>
+
+
+                
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+                <div  id="infoblock">
+
+                
+
+                <h3>Advanced Search</h3>
+
+                <a href="#" id="clo" value="">Close</a>
+
+        
+
+                </div>
+
+
+
+
+
+
+        </div>
+
+
+    <!-- Masthead (blueprinty thing)
+    ================================================== -->
+ <div class="OuterWrapper">
+  
+  <%= yield %>
+
+
+</div>
+
+
+   
+
+
+
+<!-- 
+footer here start -->
+
+
+</body></html>

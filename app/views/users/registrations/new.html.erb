@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>World's Largest Professional Network | LinkedIn</title>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <!--Styles-->
+    <link rel="stylesheet" href="/stylesheets/style.css"  />
+    <link href="/stylesheets/screen4(joinIn).css" rel="stylesheet" />
+    <!---------->
+</head>
+<body>
+    <header >
+        <div class="middle-wrap" >
+            <div id="black-logo">
+              <a href="/"><img src="/images/logo_linkedin_92x22.png"></a> 
+            </div>
+            <ul class="menu-ul">
+                <li>
+                    Already on LinkedIn? <%= link_to 'Sign In', new_user_session_path %>
+                </li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+    </header>
+
+    <div class="main-body">
+        <div class="white-box middle-wrap">
+            <div id="container">
+                <div id="error-global" class="global-error-box hidden">
+                    <div id="alert-message">
+                        <p></p>
+                    </div>
+                </div>
+                <div class="join-in-header">
+                    <h1>To join LinkedIn, sign up below...it's free!</h1>
+                </div>
+                <div id="middle-body-container">
+                    <div class="left-body-container">
+                        
+
+
+                         
+
+                        
+                            
+    
+
+                                       
+                                    
+                            
+                            
+                            
+                       
+                        <%= devise_error_messages! %>
+
+                       
+                        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+
+                            <%= f.label :first_name %>
+                                    <div class="join-form-input-boxes">
+                                        <span id="f_name-error" class="error"></span>
+                                       <%= f.text_field :first_name,:id => "firstName" %> 
+                                    </div>
+                                    <%= f.label :last_name %>
+                                    <div class="join-form-input-boxes">
+                                        <span id="l_name-error" class="error"></span>
+                                        <%= f.text_field :last_name,:id => "lastName" %>
+                                    </div>
+                                    <%= f.label :email %>
+                                    <div class="join-form-input-boxes">
+                                        <span id="e-error" class="error"></span>
+                                        <%= f.email_field :email , :id => "Email" %>
+                                    </div>
+                                    <%= f.label :password %>
+                                    <div class="join-form-input-boxes">
+                                        <span class="error" id="p-error"></span>
+                                        <%= f.password_field :password , :id => "Pass" %>
+                                    </div>
+                                
+                             <label class="hide empty">empty label</label>
+                                                                            
+                            <label class="small-text-gray">6 or more charactors</label>                                                                               
+                            <div id="submit-button"><%= f.submit "Join LinkedIn", :class => "btn-tertiary" , :id=> "submit-join-form-main-page" %><span title="By clicking Join LinkedIn, you are indicating that you have read, understood, and agree to LinkedIn's User Agreement and Privacy Policy">*</span></div>
+                            
+                       <% end %>
+                        <p>Already on LinkedIn? <%= link_to 'Sign In', new_user_session_path %></p>
+                    </div>
+                    <div class="right-body-container">
+                        <img src="/images/Untitled.png" />
+                        <p class="actions">
+                            <a  class="fb" href="#">
+                                <span class="fb_text">Sign up with Facebook</span>
+                            </a>
+                            <span title="By clicking Join LinkedIn, you are indicating that you have read, understood, and agree to LinkedIn's User Agreement and Privacy Policy">*</span>
+                        </p>
+                    </div>
+                    </div>
+
+                </div>
+                   
+            </div>
+            <div id="termsAgreement">
+                <p class="small-text-gray">* By joining LinkedIn, you agree to LinkedIn's <%= link_to "User Agreement", welcome_useragreement_path%>, <%= link_to "Privacy Policy", welcome_privacypolicy_path%> and <%= link_to "Cookie Policy", welcome_cookies_path%></p>
+            </div>
+        </div>
+    </div>
+    <footer class="middle-wrap">
+        <p class="small-text-gray">LinkedIn Corporation © 2013 | Commercial use of this site without express authorization is prohibited.</p>
+    </footer>  
+     
+    <!--Scripts-->
+    <script src="/javascripts/jquery.js" ></script>
+    <script src="/javascripts/script.js" ></script>
+    
+</body>
+</html>

@@ -1,0 +1,28 @@
+.OuterWraper{
+	width: 100%;
+	height:100%;
+	position: relative;
+
+}
+
+.InnerWrapper{
+	top: 180px;
+	width:800px;
+	margin: 5px auto;
+	background-color: white;
+	position: relative;
+	padding: 5px;
+	height: 900px;
+}
+
+.profile_image{
+	height: 150px;
+	width: 125px;
+}
+
+.p_heading{
+	top: 130px;
+	left: 150px;
+	position: relative;
+	color: 
+}

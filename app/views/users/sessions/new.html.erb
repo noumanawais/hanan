@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>World's Largest Professional Network | LinkedIn</title>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+	<!--Styles-->
+    <link href="/stylesheets/screen5(SignIn).css" rel="stylesheet" />
+    <!---------->
+</head>
+<body>
+	
+
+    
+        
+    
+
+    <div id="middle-content" class="wrap-middle">
+        <div class="main-content" >
+
+            <div id="main-heading-container" >
+                <h1>Sign in to LinkedIn</h1>
+            </div>
+            <div id="e-box" class="error-box hidden" >
+                <div id="error-box-global" class="error-box" >
+                    <div class="error-message-box">
+                        <p></p> 
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+		
+		
+
+
+
+
+
+
+
+
+<%= devise_error_messages! %>
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+                <div class="sign-in-white-box" >
+                    <div class="sign-in-white-box-container">
+                        <label>Email address:</label>
+                        <div class="input-box">
+                            <span id="email_err" class="error"></span>
+                            <%= f.email_field :email , :id => "e-field" %>
+                            <div class="clear"></div>
+                        </div>
+                        <label>Password:</label>
+                        <div class="input-box">
+                            <span id="pass_err" class="error"></span>
+                            <%= f.password_field :password , :id => "p-field" %>
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <%= link_to "Forgot password?", {:controller => "users/passwords", :action => "new"}, :id => 'forgot-password'%>
+                            
+                         
+                        </div>
+                        <label class="hide" >emptylabel</label>
+                        <div class="submit-button-sign-in-container input-box">
+                            <%= f.submit "Sign In", :class => "btn-primary", :id => "submit-Signin" %>
+                            or <%= link_to 'Join LinkedIn', new_user_registration_path %>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            <% end %>
+
+            <div class="clear"></div>
+          
+        </div>
+    </div>
+
+
+     
+	<!--Scripts-->
+    <script src="/javascripts/jquery.js"></script>
+    <script src="/javascripts/jquery_5.js"></script>
+	<script src="/javascripts/script.js" ></script>
+	
+</body>
+</html>

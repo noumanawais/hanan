@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>World's Largest Professional Network | LinkedIn</title>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+	<!--Styles-->
+    <link rel="stylesheet" href="/stylesheets/style.css"  />
+    <link href="/stylesheets/screen4(joinIn).css" rel="stylesheet" />
+    <link href="/stylesheets/signup-2.css" rel="stylesheet" />
+	<!---------->
+    
+</script>
+
+</head>
+<body>
+	<header >
+        <div class="middle-wrap" >
+            <div id="black-logo">
+			    <img title="logo" src="/images/logo_linkedin_92x22.png" />
+            </div>
+			
+            <div class="clear"></div>
+        </div>
+	</header>
+
+    <div class="main-body">
+        <div class="white-box middle-wrap">
+            <div id="container">
+                <div id="error-global" class="global-error-box hidden">
+                    <div id="alert-message">
+                        <p></p>
+                    </div>
+                </div>
+                <div class="wraper">
+                <div class="right in-line"><img src="/images/help.png" /></div>
+                 <div class="left-body-cont left">
+                    <%= current_user.first_name %>
+                        <%= form_for (:experiance)  ,:url=>{ :action=>"create"} do |f| %>
+                            <%= label_tag(:country, "* Country") %>
+                            <div>
+                                
+                                
+<%= f.select("country", Countries.all.collect {|c| [ c.country_name, c.country_code ] }) %>
+
+
+
+                            </div>
+                            <br/>
+                           <%= label_tag(:postal_code, "Postal Code") %>
+                            <div>
+                               <%= f.text_field :postal_code  %> 
+                            </div>
+                            <br/>
+                            <span >
+                                <span id="IaC-error" class="error"></span>
+                            <%= label_tag(:status, "* I am Currently:") %>  
+                              <%= f.radio_button 'status' , '1' %> Employed <%= f.radio_button 'status' , '2' %> Job Seeker <%= f.radio_button 'status' , '3' %> Student
+                            </span>
+                            
+                            <span id="showEmployed">
+                               <br/>
+                                <%= label_tag(:job_title, "* Job title") %>
+                                <span id="j-error" class="error"></span>
+                                <%= f.text_field :job_title %><br/>
+                                
+                                
+                                <%= label_tag(:company, "* Company") %>
+                                <span id="c-error" class="error"></span>
+                                <%= f.text_field :company %>
+                            
+                            </span>
+
+                            <span id="showJobSeeker">
+                                <br/>
+                               <%= label_tag(:mrjob_title, "* Most recent job title") %>
+                                <span id="mrj-error" class="error"></span>
+                                <%= f.text_field :most_recent_job_tile %><br/>
+                                
+                                
+                                <%= label_tag(:mrcompany, "* Most recent company ") %>
+                                <span id="mrc-error" class="error"></span>
+                                <%= f.text_field :most_recent_company %>
+                            
+
+                            <span id="Time"><%= label_tag(:jstime, "* Time period ") %>
+                                <span id="Time-error" class="error"></span>
+
+
+<%= f.select("jsyear", :start_year => 1951, :end_year => 2013, :field_name => 'time_period_start') %>
+
+
+
+
+                                to
+                                
+
+
+<%= f.select("jeyear",  :start_year => 1951, :end_year => 2013, :field_name => 'time_period_end') %>
+
+<br/>
+                            </span>
+                    </span>
+
+
+                            <span id="Student">
+                                <span id="Sch-error" class="error"></span>
+                                <%= label_tag(:school_university, "* School/University") %>
+                                <span id="Sch-error" class="error"></span>
+                                <%= f.text_field :school_university %>
+
+                             <%= label_tag(:degreedates, "* Dates attended ") %>
+
+<%= f.select("dsyear", :start_year => 1951, :end_year => 2013, :field_name => 'time_period_start') %>
+
+
+
+
+                                to
+                                
+
+
+<%= f.select("deyear",  :start_year => 1951, :end_year => 2020, :field_name => 'time_period_end') %>
+                  
+</br>
+<label class="hide empty">empty label</label>
+                            <div class="small-text-gray">
+                                Current students: enter your expected graduation year
+                            </div>
+
+                            </span>
+                            <label class="hide empty">empty label</label>
+
+                            
+                            <div id="submit-button">
+                              <%= submit_tag "Create my profile", class: "btn-create", id: "submit-create-my-profile" %> 
+
+                            </div>
+                            <label class="hide empty">empty label</label>
+                            <div class="small-text-gray">
+                                * indicates required field.
+                            </div>
+
+                        <% end %>
+
+                </div>
+            
+        </div>
+    </div>
+</div>
+    <footer class="middle-wrap">
+        <p class="small-text-gray">LinkedIn Corporation © 2013 | Commercial use of this site without express authorization is prohibited.</p>
+    </footer>  
+     
+	<!--Scripts-->
+	<script src="/javascripts/jquery.js" ></script>
+	<script src="/javascripts/script.js" ></script>
+    </script>
+
+    <script >
+        $(document).ready(function(){
+             $("#showEmployed").show();
+                $("#showJobSeeker").hide();
+                $("#Student").hide();
+
+             if($("#self-employed").not(":checked")){
+                $("#c").show();
+                $("#I").hide();
+
+             }
+             $("#self-employed").click(function(){
+                if($(this).is(":checked")){
+                $("#c").hide();
+                $("#I").show();            
+                }
+                else{
+                    $("#c").show();
+                $("#I").hide();                    
+                }    
+             });
+
+             if($("#s-emp").not(":checked")){
+                $("#mc").show();
+                $("#Ind").hide();
+
+             }
+             $("#s-emp").click(function(){
+                if($(this).is(":checked")){
+                $("#mc").hide();
+                $("#Ind").show();            
+                }
+                else{
+                    $("#mc").show();
+                $("#Ind").hide();                    
+                }    
+             });
+
+             $("#experiance_status_1").click(function(){
+                $("#showEmployed").show();
+                $("#showJobSeeker").hide();
+                $("#Student").hide();
+             });
+             $("#experiance_status_2").click(function(){
+                $("#showEmployed").hide();
+                $("#showJobSeeker").show();
+                $("#Student").hide();
+             });
+             $("#experiance_status_3").click(function(){
+                $("#showEmployed").hide();
+                $("#showJobSeeker").hide();
+                $("#Student").show();
+             });
+            
+        });
+    </script>
+	
+</body>
+</html>

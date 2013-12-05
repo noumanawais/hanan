@@ -1,0 +1,59 @@
+
+<html>
+<head>
+    <meta name="viewport" content="width=1000px, initial-scale=1" />
+    <title>World's Largest Professional Network | LinkedIn</title>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+	<!--Styles-->
+    <link href="/stylesheets/screen6(passwordreset).css" rel="stylesheet" />
+	<!---------->
+</head>
+<body>
+
+  
+
+    <!-- Main Area -->
+
+    <div class="wrap-middle" id="content">
+        <div class="main-content" >
+            <div id="error-box" class="error-box hidden">
+                <div class="error-message-box">
+                    <p></p>
+                </div>
+            </div>
+            <h1>
+                Changing your password is simple
+            </h1>
+            <p>
+                Please Enter your email address to get instructions. 
+            </p>
+            <%= devise_error_messages! %>
+		<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }, :id => "emailchange") do |f| %>
+            
+                <div id="emailtorecover">
+                <p>
+                    <span id="emailErrors" class="error"></span>
+                    <%= f.email_field :email , :id => "emailtoget"%>
+                </p>
+                </div>
+                <div id="buttontocontinue">
+                    <p>
+                      <%= f.submit "Send password reset", :class => "btn-primary", :id => "submit-reset-request" , :value => "Continue" %>  
+                    </p>
+                </div>
+            <% end %>
+        </div>
+    </div>
+
+    <!-- Main Area END -->
+
+    
+
+
+	<!--Scripts-->
+	<script src="/javascripts/jquery.js" ></script>
+	<script src="/javascripts/script.js" ></script>
+    <script src="/javascripts/script1.js"></script>
+	
+</body>
+</html>

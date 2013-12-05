@@ -1,0 +1,130 @@
+  <div id="indexSearch">
+
+  <div id="postField">
+
+  <div class="userPicture floatL">
+<%= image_tag current_user.avatar_url.to_s if current_user.avatar? %>
+  </div>
+
+
+  <%= form_tag({controller: "search", action: "addPost"}, method: "post") do %>
+
+    <%= text_field_tag(:postText ,nil,{ class:"statusField", :placeholder => "Share an update...", }) %>
+
+    <div id="attach">
+    </div>
+    
+    <div style="clear:both">
+    <%= select_tag :share, options_for_select([ ['Public', 2], ['Connections', 3]]), 
+    {:class =>"statusSelect"} %>
+
+    <%= submit_tag("Share" , class: "shareButton" ) %>
+  <% end %>
+
+  
+  </div>
+
+  <div style="">
+
+
+  <% if(@posts.present? ) %>
+
+  <table>
+    <% @posts.each do |post| %>
+
+    <div  class="addition" >  
+
+  	<div class="floatL userPicture">
+      
+      <%= image_tag post.user.avatar_url.to_s if post.user.avatar? %>
+  	</div>    
+    	<div class="floatL userName">
+      <%= post.user_id %>
+      <br>
+      <p class="postedText">
+  		<%= post.body_text %>
+  	</p>
+  	</div>
+  <div style="clear:both">
+  	<div style=" padding-left: 55px; ">
+  	
+  	<ul id="test">
+              
+  <% @not_liked=1%> 
+
+  <% post.likes.each do |like|  %>
+  <% @not_liked=0 if like.user_id==current_user.id %>   
+  <% end %>
+
+        <p >
+                
+  
+
+<%= post.likes.size if post.likes.size > 0 %> 
+
+
+  
+
+  
+
+
+<% if @not_liked ==0 %>
+<a href="#" value="" id="comment" class="comment_like">Like</a>
+<%else %>
+<%= link_to_if(@not_liked , "Like", {action: "like", id:post.id},{:class=>"comment_like"}) %>
+
+<%end%>
+
+ 
+              
+      		
+               </p>
+
+       </ul>
+      
+  	
+  </div>
+
+               <div class="commentBox">
+
+  <div class="comments">
+
+
+  <% post.comments.each do |comment|  %> 
+  <%= comment.commenter_id %> <label> :- <label>
+  <%= comment.comment %>
+  <br>
+
+  <% end %>
+
+  </div>
+
+
+
+
+  <%= form_tag({controller: "search", action: "addComment"}, method: "post") do %>
+
+    <%= text_field_tag(:commentText ,nil,{ class:"commentField", :placeholder => "Enter comment here...", }) %>
+    <%= hidden_field_tag(:parent_id,  post.id ) %>
+
+    <%= submit_tag("Comment" , class: "commentButton" , :name => "post[#{post.id}]" ) %>
+  <% end %>
+
+
+   </div>
+
+
+  	<div style="clear:both">
+
+
+  </div>
+
+   </tr>
+      
+      
+
+    <% end %>
+  </table>
+
+    <% end %>
+  </div>

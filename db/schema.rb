@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131206080411) do
+ActiveRecord::Schema.define(:version => 20131206105110) do
 
   create_table "authorizations", :force => true do |t|
     t.integer  "user_id"
@@ -29,8 +29,10 @@ ActiveRecord::Schema.define(:version => 20131206080411) do
   end
 
   create_table "countries", :force => true do |t|
-    t.string "country_code", :limit => 2,   :default => "", :null => false
-    t.string "country_name", :limit => 100, :default => "", :null => false
+    t.string   "country_code", :limit => 2,   :default => "", :null => false
+    t.string   "country_name", :limit => 100, :default => "", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "experiances", :force => true do |t|

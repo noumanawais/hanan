@@ -17,8 +17,11 @@ Bootstrap::Application.routes.draw do
   post "search/search_results"
   post "search/search_result"
   post "search/connect"
-
+  get "search/showFriends"
+  post "search/showFriends"
   get "search/profile"
+  get "search/requests"
+  post "search/requests"
  
   put"search/profile"
 

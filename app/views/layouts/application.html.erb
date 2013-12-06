@@ -47,19 +47,12 @@
     <div class="make_header_fix">
     <div id="header_back">
     <div id="header">
-       <a href="../screen1/screen1.html"><span id="logo"></span></a>
-       <a href="../screen1/screen1.html"><span id="option"></span></a>
+       <a href=""><span id="logo"></span></a>
+       <a href=""><span id="option"></span></a>
 
             <div   class="search_input"> 
 
                 <div id="floatl">
-<!--                     <form  action="search_results" method="post" name="search_form">
-        
-        
-                        <input class="input_field"   placeholder="Search for people, jobs, companies, and more..." autocomplete="off"  type="text" value="" name="search">
-                        <input  type="submit"  value="" id="btn">
-
-                    </form>         -->
 
 
 
@@ -85,7 +78,7 @@
 
 
 
-                    <a href="#"><span id="user"></span></a>
+                <%= link_to "" , destroy_user_session_path, :id=> "user" %>
                 
                    
                         
@@ -93,7 +86,12 @@
 
                     </span></a>
 
-                    <a href="# "><span id="notification" ></span></a>
+                    <a href="requests"><span id="notification" >
+                        <%if @notifications && @notifications.size>0 %>
+                        <span id="notify"><%= @notifications.size %></span>
+                        <%end%>
+                    </span>
+                </a>
 
                     <a href="#" ><span id="message" > </span> </a>
 
@@ -126,7 +124,7 @@
 
             <li>
         
-                   <%= link_to "Profile" , search_profile_path  %> 
+                   <%= link_to "UpLoad Image" , search_profile_path  %> 
 
                     
 
@@ -138,7 +136,7 @@
          <a href="#" id="bbb" value=""  >Network</a>
 
                     <ul class="dropdown-menu 2nd" id="black-background" role="menu" aria-labelledby="dropdownMenu" >
-                    <li><a tabindex="-1" href="showFriends">Contacts</a></li>
+                    <li><%= link_to "Contacts" ,search_showFriends_path %></li>
                     <li><a tabindex="-1" href="#">Add connection</a></li>
                     </ul>
 

@@ -1,0 +1,28 @@
+
+<div class="InnerWrapper">
+<div id="inside_body">
+<p>
+<pre>
+<b><%= @requests.size if @requests %></b> Requests Pending
+</pre>
+</p>
+
+
+
+<table>
+	<%=  current_user.email %>
+	<%if @requests%>
+  <% @requests.each do |request| %>
+    <tr>
+     <td><%= request.sender %></td>
+     <td><%= button_to "Add", {action: "add", id:request.sender, remote: true, :method => :post}, {class: 'connectButton'} %> </td>
+    </tr>
+    
+    
+<%end%>
+  <% end %>
+</table>
+
+</div>
+
+</div>

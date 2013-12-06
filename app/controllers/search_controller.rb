@@ -6,26 +6,30 @@ def search_result
 		@user=User.find(:all, :conditions => ["email = ?",@id])
 
 	# @users=User.all
-	if(params[:search]==nil)
-		params[:search]="none";
-	end
-		
+
+
+@notifications=Notification.find(:all, :conditions => ["receiver = ? AND status= ?",current_user.email ,1])		
 	 @users=User.find(:all,:conditions => ["email Like ? ",'%'+params[:search]+'%'])
 
+@users=@users-@user
 	@count=@users.count
 	@name=params[:search]
-#	render 'search_result'
 end
 def search_results
-	@id=current_user.email
+	
 
-		@user=User.find(:all, :conditions => ["email = ?",@id])
+		@user=User.find(:all, :conditions => ["email = ?",current_user.email])
+		
+
+@notifications=Notification.find(:all, :conditions => ["receiver = ? AND status= ?",current_user.email ,1])		
 
 	# @users=User.all
-	if(params[:search]==nil)
-		params[:search]="none";
-	end
-	 @users=User.find(:all,:conditions => ["email Like ? ",'%'+params[:search]+'%'])
+	
+@users=User.find(:all,:conditions => ["email Like ? ",'%'+params[:search]+'%'])
+
+	
+	 
+	@users=@users-@user
 
 	@count=@users.count
 
@@ -38,6 +42,8 @@ def profile
     current_user.avatar=@user.avatar
 
     current_user.save!
+
+@notifications=Notification.find(:all, :conditions => ["receiver = ? AND status= ?",current_user.email ,1])		
   end
 
 
@@ -53,18 +59,26 @@ def index
 
 	#@friends=Friend.find(:all, :conditions =>["email = ?",@id])
 
+@notifications=Notification.find(:all, :conditions => ["receiver = ? AND status= ?",current_user.email ,1])		
+		
+		
+
+
+	@friends=Friend.find(:all, :conditions =>["email = ?",current_user.email])
+
 		
 
 		
-	#	@friends.each do |friend|  
+		@friends.each do |friend|  
 		
-	#	@posts=@posts+Post.find(:all, :conditions => ["userid = ? AND status = ?", friend.friend,3])
+		@posts=@posts+Post.find(:all, :conditions => ["user_id = ? AND status = ?", friend.friend_email,3])
+
+		end
 
 
-#end
 
-#@posts=@posts.sort { |x, y| y <=> x }
-		
+
+		@posts=@posts.sort { |x, y| y <=> x }
 	  end
 
 
@@ -80,7 +94,7 @@ def advance
 end
 
 
-	def add_friend
+	def add
 
 	@my_id=current_user.email
 	@friend=params[:id]
@@ -89,9 +103,10 @@ end
 	@friend1=Friend.new(:email => params[:id], :friend => @my_id)
 
 
-
 	if @friend.save && @friend1.save
 		
+		render "index"
+	else
 		render "index"
 	end
 
@@ -105,13 +120,14 @@ end
 
 	@user=User.find(params[:id])
 
-	@sender=current_user.email
+	@sender=current_user.id
 
 	 @notify=Notification.new(:sender => @sender, :receiver => @user.email ,:status => 1, :user_id => @user.id)
-
 	  if @notify.save
 
-	redirect_to :action=>'index' 
+	redirect_to :action=>'index'
+	else
+	redirect_to :action => 'index' 
 
 end
 
@@ -119,15 +135,24 @@ end
 	end
 
 
-	def friend_requests
-
-	@my_id=current_user.email
-
-	@requests=Notification.find(:all,:conditions => ["receiver = ? AND status = ?",@my_id,1])
+	def requests
 
 
 
+	@my_id=current_user.id
+
+	@requests=Notification.find(:all,:conditions => ["user_id = ? AND status = ?",@my_id,1])
+
+
+	if @requests
+@notifications=Notification.find(:all, :conditions => ["receiver = ? AND status= ?",current_user.email ,1])		
 	render "requests"
+   	else 
+   		redirect_to :action => 'index'
+
+   end
+	
+
 
 	end
 
@@ -137,7 +162,7 @@ end
 
 	@post=Post.new(:user_id=>@id , :body_text => params[:postText], :status => params[:share])  # status 1 means public
 
-	 
+	
 
 		if @post.save
 
@@ -198,7 +223,7 @@ def advanceSearch
  @users=User.find(:all,:conditions => ["email Like ? ",'%aa%'])
 
 	@count=@users.count
-
+@notifications=Notification.find(:all, :conditions => ["receiver = ? AND status= ?",current_user.email ,1])		
 
 	render 'search_results'
 
@@ -208,23 +233,21 @@ end
 
 def showFriends
 
-@id=current_user.email
-
-@user=User.find(:all, :conditions => ["email = ?",@id])
+@user=User.find(:all, :conditions => ["email = ?",current_user.email])
 
 @user2=@user
 
 
-  @user.each do |user| 
+@notifications=Notification.find(:all, :conditions => ["receiver = ? AND status= ?",current_user.email ,1])		
 
-   user.friends.each do |friend| 
+   current_user.friends.each do |friend| 
 	
-	@user=@user+User.find(:all, :conditions => ["email = ?",friend.friend])
+	@user=@user+User.find(:all, :conditions => ["email = ?",friend.friend_email])
 	    
   end 
 
+  @user=@user-@user2
 
-  end 
 
 
 end
@@ -239,7 +262,7 @@ def findAlumini
 
 @user=User.find(:all, :conditions => ["email = ?",@id])  #for notifications
 
-
+@notifications=Notification.find(:all, :conditions => ["receiver = ? AND status= ?",current_user.email ,1])		
 
 @users=User.find(:all)
 

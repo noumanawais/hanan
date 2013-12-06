@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131205020104) do
+ActiveRecord::Schema.define(:version => 20131206080411) do
 
   create_table "authorizations", :force => true do |t|
     t.integer  "user_id"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(:version => 20131205020104) do
 
   create_table "friends", :force => true do |t|
     t.integer  "user_id"
-    t.string   "friend"
+    t.string   "friend_email"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(:version => 20131205020104) do
 
   create_table "notifications", :force => true do |t|
     t.integer  "user_id"
-    t.string   "sender"
+    t.integer  "sender"
     t.string   "receiver"
     t.integer  "status"
     t.datetime "created_at"

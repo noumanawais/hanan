@@ -18,7 +18,7 @@ end
 # gem 'unicorn'
 
 #gem "rmagick"
-#gem "carrierwave"
+gem "carrierwave"
 # Deploy with Capistrano
 # gem 'capistrano'
 
